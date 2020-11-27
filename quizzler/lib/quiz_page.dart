@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import 'quiz_model.dart';
+
+QuizModel quizModel = new QuizModel();
+
 class Quiz extends StatefulWidget {
   @override
   _QuizState createState() => _QuizState();
 }
 
 class _QuizState extends State<Quiz> {
-  List<Icon> scoreList = [
-
-  ];
-
+  
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -23,11 +24,11 @@ class _QuizState extends State<Quiz> {
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                'This is where the question text will go',
+                quizModel.getQuestion(),
                 textAlign: TextAlign.center,
                 style: GoogleFonts.roboto(
                   fontWeight: FontWeight.w300,
-                  fontSize: 20.0,
+                  fontSize: 22.0,
                   color: Colors.white,
                   decoration: TextDecoration.none,
                 ),
@@ -46,11 +47,9 @@ class _QuizState extends State<Quiz> {
                 style: TextStyle(fontSize: 20, color: Colors.white),
               ),
               onPressed: () {
+                quizModel.checkAnswer(true);
                 setState(() {
-                  scoreList.add(
-                  Icon(
-                    Icons.check,color: Colors.green)
-                    );
+                  quizModel.nextQuestion();
                 });
               },
             ),
@@ -67,15 +66,16 @@ class _QuizState extends State<Quiz> {
                 style: TextStyle(fontSize: 20, color: Colors.white),
               ),
               onPressed: () {
+                quizModel.checkAnswer(false);
                 setState(() {
-                  scoreList.add(Icon(Icons.close, color: Colors.red));
+                  quizModel.nextQuestion();
                 });
               },
             ),
           ),
         ),
         Row(
-          children: scoreList,
+          children: quizModel.scoreList,
         ),
       ],
     );
