@@ -5,6 +5,7 @@ import '../Components/bottom_button.dart';
 import '../Components/reusable_card.dart';
 import '../Components/icon_content.dart';
 import '../constants.dart';
+import 'package:bmi_calc/calc_brain.dart';
 
 enum Gender { male, female }
 enum IconFunction { add, remove }
@@ -207,9 +208,16 @@ class _InputPageState extends State<InputPage> {
             ),
           ),
           BottomButton(
-            onPress: (){
+            onPress: () {
+              BmiCalc calc = BmiCalc(height: height, weight: weight);
               Navigator.push(
-            context, MaterialPageRoute(builder: (context) => ResultPage()));
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => ResultPage(
+                            bmiResult: calc.bmiCalc(),
+                            resultText: calc.getResult(),
+                            interpretation: calc.getInterpretation(),
+                          )));
             },
             txtTitle: 'CACULATE',
           )
@@ -218,8 +226,6 @@ class _InputPageState extends State<InputPage> {
     );
   }
 }
-
-
 
 class RoundIconButton extends StatelessWidget {
   RoundIconButton({@required this.icon, @required this.onPressed});

@@ -4,20 +4,23 @@ import 'package:flutter/material.dart';
 import '../Components/bottom_button.dart';
 
 class ResultPage extends StatelessWidget {
-  // ResultPage(
-  //     {@required this.interpretation,
-  //     @required this.bmiResult,
-  //     @required this.resultText});
-      
-  // final String bmiResult;
-  // final String resultText;
-  // final String interpretation;
+  ResultPage(
+      {@required this.interpretation,
+      @required this.bmiResult,
+      @required this.resultText});
+
+  final String bmiResult;
+  final String resultText;
+  final String interpretation;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('BMI CACULATOR'),
+        centerTitle: true,
+        title: Text(
+          'BMI CACULATOR',
+        ),
       ),
       body: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -42,18 +45,15 @@ class ResultPage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
                     Text(
-                      // resultText.toUpperCase(),
-                      'normal',
+                      resultText.toString(),
                       style: kResultTextStyle,
                     ),
                     Text(
-                      // bmiResult,
-                      '10.0',
+                      bmiResult.toString(),
                       style: kBMITextStyle,
                     ),
                     Text(
-                      // interpretation,
-                      'khoe vcl',
+                      interpretation.toString(),
                       style: kBodyTextStyle,
                       textAlign: TextAlign.center,
                     )
